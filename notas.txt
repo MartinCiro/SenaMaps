@@ -1,0 +1,4 @@
+Para la implementacion del senaMaps en flutter puedo hacer uso de un WebView https://codelabs.developers.google.com/codelabs/flutter-webview?hl=es-419#0
+
+Pagina web con flutter
+https://codigofacilito.com/videos/1-introduccion-fefa73a5-425f-4de4-a3f6-368a1fca2d42
