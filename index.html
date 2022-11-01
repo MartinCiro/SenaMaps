@@ -6,14 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    body{
+        background-color: violet;
+        background-position: 150%;
+    }
+</style>
 <body>
-    <script src="three.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.146.0/three.js"></script>
     <script type="module" src="GLTFLoader.js"></script>
     <script type="module">
         import { GLTFLoader } from './GLTFLoader.js';
         import {OrbitControls} from './OrbitControls.js';
         var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.01,1000);
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.01,100);
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize( window.innerWidth, window.innerHeight );
         document.body.appendChild( renderer.domElement );
@@ -23,9 +29,11 @@
         loader.load('proyect.gltf',function(gltf){
             obj = gltf.scene;
             scene.add(gltf.scene);
+            gltf.scene.scale.set(3,3,3);
+            gltf.scene.position.set(0,5,30)
         });
-        scene.background = new THREE.Color(0xffffff);
-        var light = new THREE.DirectionalLight(0xff0000, 1, 10);
+        scene.environment=null;
+        var light = new THREE.DirectionalLight(0xffffff, 2, 50);
         light.position.set(50, 50, 100);
         light.castShadow = true;
         scene.add(light);
@@ -33,8 +41,8 @@
         camera.position.set(0,10,40)
 
         var controls = new OrbitControls(camera, renderer.domElement);
-        controls.minDistance = 3;
-        controls.maxDistance = 10;
+        //controls.minDistance = 3;
+        //controls.maxDistance = 10;
         controls.update();
 
         function animate() {
